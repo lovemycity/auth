@@ -1,0 +1,36 @@
+{% interface
+Page {
+    Domain()
+	Title()
+	Body()
+	CSS()
+	JS()
+}
+%}
+
+{% func Layout(p Page) %}
+<html lang="ru">
+	<head>
+		<title>{%= p.Title() %}</title>
+		<style>{% cat "layout.css" %}</style>
+		{%= p.CSS() %}
+		<script>const sessionDomain = '{%= p.Domain() %}';</script>
+		<script>{% cat "layout.js" %}</script>
+	</head>
+	<body>
+	    <main id="container">
+		    {%= p.Body() %}
+		</main>
+		{%= p.JS() %}
+	</body>
+</html>
+{% endfunc %}
+
+{% code type BasePage struct {
+    SessionDomain string
+} %}
+{% func (p *BasePage) Domain() %}{%s p.SessionDomain %}{% endfunc %}
+{% func (p *BasePage) Title() %}This is a base title{% endfunc %}
+{% func (p *BasePage) Body() %}This is a base body{% endfunc %}
+{% func (p *BasePage) CSS() %}{% endfunc %}
+{% func (p *BasePage) JS() %}{% endfunc %}

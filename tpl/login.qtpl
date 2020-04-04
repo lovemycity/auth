@@ -1,0 +1,40 @@
+{% code
+type LoginPage struct {
+	BasePage
+}
+%}
+
+{% func (p *LoginPage) Title() %}
+	This is the main page
+{% endfunc %}
+
+
+{% func (p *LoginPage) Body() %}
+	<h1>Авторизация</h1>
+	<div>
+		<div>
+		    <form id="form">
+                <div>
+                    <label for="email">E-Mail:</label>
+                    <input type="email" id="email" required/>
+                </div>
+                <div>
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" required/>
+                </div>
+                <div id="error"></div>
+                <div>
+                    <button type="submit" id="button">Войти в систему</button>
+                </div>
+		    </form>
+		</div>
+	</div>
+{% endfunc %}
+
+{% func (p *LoginPage) JS() %}
+<script>{% cat "login.js" %}</script>
+{% endfunc %}
+
+{% func (p *LoginPage) CSS() %}
+<style>{% cat "login.css" %}</style>
+{% endfunc %}

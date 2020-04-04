@@ -1,0 +1,59 @@
+{% code
+type RegisterPage struct {
+    BasePage
+}
+%}
+
+{% func (p *RegisterPage) Title() %}
+	Регистрация
+{% endfunc %}
+
+{% func (p *RegisterPage) Body() %}
+	<h1>Регистрация</h1>
+	<div>
+		<form id="form">
+            <div>
+                <label for="gender">Как к вам обращаться?</label>
+                <select id="gender">
+                    <option value="f">Уважаемая</option>
+                    <option value="m">Уважаемый</option>
+                </select>
+            </div>
+            <div>
+                <label for="last_name">Фамилия:</label>
+                <input type="text" id="last_name" required/>
+            </div>
+            <div>
+                <label for="first_name">Имя:</label>
+                <input type="text" id="first_name" required/>
+            </div>
+            <div>
+                <label for="middle_name">Отчество:</label>
+                <input type="text" id="middle_name"/>
+            </div>
+            <div>
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" required/>
+            </div>
+            <div>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" required minlength="8"/>
+            </div>
+            <div>
+                <label for="confirm_password">Пароль еще раз:</label>
+                <input type="password" id="confirm_password" required minlength="8"/>
+            </div>
+            <div>
+                <button type="submit" id="submit_button">Зарегестрироваться!</button>
+            </div>
+		</form>
+	</div>
+{% endfunc %}
+
+{% func (p *RegisterPage) JS() %}
+<script>{% cat "register.js" %}</script>
+{% endfunc %}
+
+{% func (p *RegisterPage) CSS() %}
+<style>{% cat "register.css" %}</style>
+{% endfunc %}
