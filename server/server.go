@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	"github.com/globalsign/mgo/bson"
 	"github.com/lovemycity/auth/tpl"
+	"github.com/lovemycity/auth/user"
 	"log"
 	"net/http"
 	"strings"
@@ -128,7 +129,7 @@ func handleGetUser(ctx *gin.Context) {
 			})
 			return
 		}
-		u := us.(*User)
+		u := us.(*user.User)
 		if u.Picture == "" {
 			hasher := md5.Sum([]byte(u.Email))
 			hash := hex.EncodeToString(hasher[:])
@@ -185,7 +186,7 @@ func handleRegister(ctx *gin.Context) {
 		})
 		return
 	}
-	u := &User{
+	u := &user.User{
 		ID:          primitive.NewObjectID(),
 		Email:       req.Email,
 		Password:    string(pass),
@@ -245,7 +246,7 @@ func handleLogin(ctx *gin.Context) {
 		})
 		return
 	}
-	u := new(User)
+	u := new(user.User)
 	res := db.FindOne(ctx, bson.M{"email": req.Email})
 	if res.Err() != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
