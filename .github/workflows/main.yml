@@ -23,7 +23,7 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@2.14
       with:
         # The name of the image you would like to push
-        #name: 
+        name: docker.pkg.github.com/lovemycity/auth/auth
         # The login username for the registry
         #username: 
         # The login password for the registry
